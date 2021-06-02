@@ -1,26 +1,52 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:travel_to_demo/screens/home.dart';
+import 'package:travel_to_demo/screens/select_categories.dart';
 import 'package:travel_to_demo/widgets/icon_badge.dart';
 import 'package:travel_to_demo/screens/person_account.dart';
 import 'package:travel_to_demo/screens/favorites.dart';
 import 'package:travel_to_demo/screens/community.dart';
+import 'package:travel_to_demo/screens/user_info_screen.dart';
+
 class MainScreen extends StatefulWidget {
+  const MainScreen({Key key,User user})
+      : _user = user,
+        super(key: key);
+
+  final User _user;
+
   @override
   _MainScreenState createState() => _MainScreenState();
 }
 
 class _MainScreenState extends State<MainScreen> {
+
   PageController _pageController;
+  static bool _firstlogin=false;
   int _page = 0;
+  // bool _isEmailVerified;
+  User _user;
+
+
+   transition(context) {
+    Future.delayed(Duration.zero,() {Navigator.push(context, MaterialPageRoute(builder: (context) => SelectCategories(user: _user,)));});
+    _firstlogin=false;
+
+  }
 
   @override
-  Widget build(BuildContext context) {
+   Widget build(BuildContext context) {
+    if(_firstlogin==true){
+
+      transition(context);
+
+    }
     return Scaffold(
       body: PageView(
         physics: NeverScrollableScrollPhysics(),
         controller: _pageController,
         onPageChanged: onPageChanged,
-        children: List.generate(4, (index) => index > 0?(index>1?(index>2?PersonAccount():Community()):Favorites()):Home()),
+        children: List.generate(4, (index) => index > 0?(index>1?(index>2?UserInfoScreen(user: _user,):Community()):Favorites()):Home()),
       ),
       bottomNavigationBar: BottomAppBar(
         child: Row(
@@ -38,6 +64,7 @@ class _MainScreenState extends State<MainScreen> {
         color: Theme.of(context).primaryColor,
       ),
     );
+
   }
 
   void navigationTapped(int page) {
@@ -45,9 +72,20 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   @override
-  void initState() {
-    super.initState();
-    _pageController = PageController();
+    void initState() {
+    _user = widget._user;
+
+
+      // _isEmailVerified = _user.emailVerified;
+        final _cTime=_user.metadata.creationTime;
+       final _fTime=_user.metadata.lastSignInTime;
+      if(_cTime == _fTime ){
+        _firstlogin=true;
+      }
+      super.initState();
+
+      _pageController = PageController();
+    // }
   }
 
   @override

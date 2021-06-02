@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:travel_to_demo/util/blogs.dart';
 import 'package:travel_to_demo/util/places.dart';
 import 'package:travel_to_demo/widgets/horizontal_place_item.dart';
 import 'package:travel_to_demo/widgets/icon_badge.dart';
@@ -31,7 +32,7 @@ class Community extends StatelessWidget {
           Padding(
             padding: EdgeInsets.all(20.0),
             child: Text(
-              "Community",
+              "Community Blogs",
               style: TextStyle(
                 fontSize: 30.0,
                 fontWeight: FontWeight.w600,
@@ -69,16 +70,16 @@ class Community extends StatelessWidget {
   buildVerticalList() {
     return Padding(
       padding: EdgeInsets.all(20.0),
-      // child: ListView.builder(
-      //   primary: false,
-      //   physics: NeverScrollableScrollPhysics(),
-      //   shrinkWrap: true,
-      //   itemCount: places == null ? 0 : places.length,
-      //   itemBuilder: (BuildContext context, int index) {
-      //     Map place = places[index];
-      //     return VerticalPlaceItem(place: place);
-      //   },
-      // ),
+       child: ListView.builder(
+         primary: false,
+        physics: NeverScrollableScrollPhysics(),
+         shrinkWrap: true,
+         itemCount: blogs == null ? 0 : blogs.length,
+         itemBuilder: (BuildContext context, int index) {
+           Map blog = blogs[index];
+          return VerticalPlaceItem(place: blog);
+         },
+       ),
     );
   }
 }

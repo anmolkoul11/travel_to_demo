@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:travel_to_demo/res/custom_colors.dart';
+import 'package:travel_to_demo/screens/main_screen.dart';
 import 'package:travel_to_demo/screens/register_screen.dart';
 import 'package:travel_to_demo/screens/user_info_screen.dart';
 import 'package:travel_to_demo/util/authentication.dart';
@@ -113,7 +114,7 @@ class _SignInFormState extends State<SignInForm> {
                           if (user != null) {
                             Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
-                                builder: (context) => UserInfoScreen(
+                                builder: (context) => MainScreen(
                                   user: user,
                                 ),
                               ),

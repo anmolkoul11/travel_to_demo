@@ -53,15 +53,30 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: CustomColors.firebaseNavy,
+      backgroundColor: Theme.of(context).primaryColor,
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: CustomColors.firebaseNavy,
+        backgroundColor: Theme.of(context).primaryColor,
         title: AppBarTitle(),
       ),
-      body: SafeArea(
-        child: Padding(
+      body: ListView(
+
+          children:<Widget>[
+            Padding(
+            padding: EdgeInsets.all(20.0),
+            child: Text(
+              "User Account",
+              style: TextStyle(
+                fontSize: 30.0,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
+
+
+        Padding(
           padding: const EdgeInsets.only(
+            top: 40.0,
             left: 16.0,
             right: 16.0,
             bottom: 20.0,
@@ -269,7 +284,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                     ),
             ],
           ),
-        ),
+        ),]
       ),
     );
   }
