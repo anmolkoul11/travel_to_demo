@@ -2,7 +2,6 @@ List blogs = [
   {
     "name": "Hotel Dolah Amet & Suites",
     "img": "assets/1.jpeg",
-    "price": r"$100/night",
     "location": "London, England",
     "details": "Pellentesque in ipsum id orci porta dapibus. "
         "Nulla porttitor accumsan tincidunt. Donec rutrum "
@@ -17,7 +16,6 @@ List blogs = [
   {
     "name": "Beach Mauris Blandit",
     "img": "assets/2.jpeg",
-    "price": r"$100/night",
     "location": "Lisbon, Portugal",
     "details": "Pellentesque in ipsum id orci porta dapibus. "
         "Nulla porttitor accumsan tincidunt. Donec rutrum "
@@ -32,7 +30,6 @@ List blogs = [
   {
     "name": "Ipsum Restaurant",
     "img": "assets/3.jpeg",
-    "price": r"$100/night",
     "location": "Paris, France",
     "details": "Pellentesque in ipsum id orci porta dapibus. "
         "Nulla porttitor accumsan tincidunt. Donec rutrum "
@@ -47,7 +44,6 @@ List blogs = [
   {
     "name": "Curabitur Beach",
     "img": "assets/4.jpeg",
-    "price": r"$100/night",
     "location": "Rome, Italy",
     "details": "Pellentesque in ipsum id orci porta dapibus. "
         "Nulla porttitor accumsan tincidunt. Donec rutrum "
@@ -62,7 +58,6 @@ List blogs = [
   {
     "name": "Tincidunt Pool",
     "img": "assets/5.jpeg",
-    "price": r"$100/night",
     "location": "Madrid, Spain",
     "details": "Pellentesque in ipsum id orci porta dapibus. "
         "Nulla porttitor accumsan tincidunt. Donec rutrum "

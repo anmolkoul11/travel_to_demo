@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+// import 'package:transparent_image/transparent_image.dart';
 import '../screens/details.dart';
 
 class VerticalPlaceItem extends StatelessWidget {
@@ -18,13 +18,13 @@ class VerticalPlaceItem extends StatelessWidget {
             children: <Widget>[
               ClipRRect(
                 borderRadius: BorderRadius.circular(5),
-                child: Image.asset(
-                  "${place["img"]}",
+                child: Image.network("${place["img"]}",
                   height: 70.0,
                   width: 70.0,
                   fit: BoxFit.cover,
                 ),
-              ),
+                ),
+
               SizedBox(width: 15.0),
               Container(
                 height: 80.0,
@@ -71,18 +71,7 @@ class VerticalPlaceItem extends StatelessWidget {
                       ],
                     ),
                     SizedBox(height: 10.0),
-                    Container(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        "${place["price"]}",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16.0,
-                        ),
-                        maxLines: 1,
-                        textAlign: TextAlign.left,
-                      ),
-                    ),
+
                   ],
                 ),
               ),

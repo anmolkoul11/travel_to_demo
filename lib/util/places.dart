@@ -1,8 +1,8 @@
+
 List places = [
   {
     "name": "Hotel Dolah Amet & Suites",
-    "img": "assets/1.jpeg",
-    "price": r"$100/night",
+    "img": "C:/Users/anmol/AndroidStudioProjects/travel_to_demo/assets/1.jpeg",
     "location": "London, England",
     "details": "Pellentesque in ipsum id orci porta dapibus. "
         "Nulla porttitor accumsan tincidunt. Donec rutrum "
@@ -16,8 +16,7 @@ List places = [
   },
   {
     "name": "Beach Mauris Blandit",
-    "img": "assets/2.jpeg",
-    "price": r"$100/night",
+    "img": "C:/Users/anmol/AndroidStudioProjects/travel_to_demo/assets/2.jpeg",
     "location": "Lisbon, Portugal",
     "details": "Pellentesque in ipsum id orci porta dapibus. "
         "Nulla porttitor accumsan tincidunt. Donec rutrum "
@@ -31,8 +30,7 @@ List places = [
   },
   {
     "name": "Ipsum Restaurant",
-    "img": "assets/3.jpeg",
-    "price": r"$100/night",
+    "img": "C:/Users/anmol/AndroidStudioProjects/travel_to_demo/assets/3.jpeg",
     "location": "Paris, France",
     "details": "Pellentesque in ipsum id orci porta dapibus. "
         "Nulla porttitor accumsan tincidunt. Donec rutrum "
@@ -46,8 +44,7 @@ List places = [
   },
   {
     "name": "Curabitur Beach",
-    "img": "assets/4.jpeg",
-    "price": r"$100/night",
+    "img": "C:/Users/anmol/AndroidStudioProjects/travel_to_demo/assets/4.jpeg",
     "location": "Rome, Italy",
     "details": "Pellentesque in ipsum id orci porta dapibus. "
         "Nulla porttitor accumsan tincidunt. Donec rutrum "
@@ -61,8 +58,7 @@ List places = [
   },
   {
     "name": "Tincidunt Pool",
-    "img": "assets/5.jpeg",
-    "price": r"$100/night",
+    "img": "C:/Users/anmol/AndroidStudioProjects/travel_to_demo/assets/5.jpeg",
     "location": "Madrid, Spain",
     "details": "Pellentesque in ipsum id orci porta dapibus. "
         "Nulla porttitor accumsan tincidunt. Donec rutrum "

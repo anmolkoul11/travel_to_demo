@@ -1,8 +1,11 @@
+import 'dart:convert';
+import 'package:travel_to_demo/util/places.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
 import 'package:travel_to_demo/screens/main_screen.dart';
 import 'package:travel_to_demo/util//formfield.dart';
+import 'package:http/http.dart' as http;
 
 
 // ignore: must_be_immutable
@@ -60,9 +63,26 @@ class _SelectCategories extends State<SelectCategories> {
   }
 
   // ignore: non_constant_identifier_names
-  ButtonAction(){
+  Future<String> fetchData(String string) async{
+    final response = await http.get(Uri.parse('https://recommend-dest.herokuapp.com/cat?title='+string));
+    if (response.statusCode==200){
+      List<dynamic> stringList = jsonDecode(response.body) ;
+      setState(() {
+        places = stringList;
+      });
 
-    Navigator.pop((context));
+      print(stringList);
+      return response.body;
+    }
+    else{
+      throw Exception('Failed to Fetch data from Heroku');
+    }
+  }
+
+  buttonAction(String string){
+    var result = fetchData(string);
+
+    // Navigator.pop((context));
   }
 
   @override
@@ -118,6 +138,14 @@ class _SelectCategories extends State<SelectCategories> {
                 ),
                 onConfirm: (results) {
                   _selectedAnimals = results;
+                  var concat = "";
+
+                  _selectedAnimals.forEach((item){
+                    concat = concat + "" + item.name +",";
+
+                  });
+                  var res = concat.substring(0,concat.length-1);
+                  buttonAction(res);
                 },
               ),
               SizedBox(height: 50),
@@ -128,7 +156,7 @@ class _SelectCategories extends State<SelectCategories> {
               ),
               ElevatedButton(
 
-                onPressed:() {ButtonAction();
+                onPressed:() {buttonAction("Temples,Mughal");
                 },
 
                 child: const Text('Enabled'),
@@ -138,118 +166,7 @@ class _SelectCategories extends State<SelectCategories> {
 
 
               ),
-              // ElevatedButton(onPressed: ButtonAction(), child: const Text("Done"))
-              //################################################################################################
-              // This MultiSelectBottomSheetField has no decoration, but is instead wrapped in a Container that has
-              // decoration applied. This allows the ChipDisplay to render inside the same Container.
-              //################################################################################################
-              //       Container(
-              //         decoration: BoxDecoration(
-              //           color: Theme.of(context).primaryColor.withOpacity(.4),
-              //           border: Border.all(
-              //             color: Theme.of(context).primaryColor,
-              //             width: 2,
-              //           ),
-              //         ),
-              //         child: Column(
-              //           children: <Widget>[
-              //             MultiSelectBottomSheetField(
-              //               initialChildSize: 0.4,
-              //               listType: MultiSelectListType.CHIP,
-              //               searchable: true,
-              //               buttonText: Text("Favorite Animals"),
-              //               title: Text("Animals"),
-              //               items: _items,
-              //               onConfirm: (values) {
-              //                 _selectedAnimals2 = values;
-              //               },
-              //               chipDisplay: MultiSelectChipDisplay(
-              //                 onTap: (value) {
-              //                   setState(() {
-              //                     _selectedAnimals2.remove(value);
-              //                   });
-              //                 },
-              //               ),
-              //             ),
-              //             _selectedAnimals2 == null || _selectedAnimals2.isEmpty
-              //                 ? Container(
-              //                 padding: EdgeInsets.all(10),
-              //                 alignment: Alignment.centerLeft,
-              //                 child: Text(
-              //                   "None selected",
-              //                   style: TextStyle(color: Colors.black54),
-              //                 ))
-              //                 : Container(),
-              //           ],
-              //         ),
-              //       ),
-              //       SizedBox(height: 40),
-              //       //################################################################################################
-              //       // MultiSelectBottomSheetField with validators
-              //       //################################################################################################
-              //       MultiSelectBottomSheetField<Animal>(
-              //         key: _multiSelectKey,
-              //         initialChildSize: 0.7,
-              //         maxChildSize: 0.95,
-              //         title: Text("Animals"),
-              //         buttonText: Text("Favorite Animals"),
-              //         items: _items,
-              //         searchable: true,
-              //         validator: (values) {
-              //           if (values == null || values.isEmpty) {
-              //             return "Required";
-              //           }
-              //           List<String> names = values.map((e) => e.name).toList();
-              //           if (names.contains("Frog")) {
-              //             return "Frogs are weird!";
-              //           }
-              //           return null;
-              //         },
-              //         onConfirm: (values) {
-              //           setState(() {
-              //             _selectedAnimals3 = values;
-              //           });
-              //           _multiSelectKey.currentState.validate();
-              //         },
-              //         chipDisplay: MultiSelectChipDisplay(
-              //           onTap: (item) {
-              //             setState(() {
-              //               _selectedAnimals3.remove(item);
-              //             });
-              //             _multiSelectKey.currentState.validate();
-              //           },
-              //         ),
-              //       ),
-              //       SizedBox(height: 40),
-              //       //################################################################################################
-              //       // MultiSelectChipField
-              //       //################################################################################################
-              //       MultiSelectChipField(
-              //         items: _items,
-              //         initialValue: [_animals[4], _animals[7], _animals[9]],
-              //         title: Text("Animals"),
-              //         headerColor: Colors.blue.withOpacity(0.5),
-              //         decoration: BoxDecoration(
-              //           border: Border.all(color: Colors.blue[700], width: 1.8),
-              //         ),
-              //         selectedChipColor: Colors.blue.withOpacity(0.5),
-              //         selectedTextStyle: TextStyle(color: Colors.blue[800]),
-              //         onTap: (values) {
-              //           //_selectedAnimals4 = values;
-              //         },
-              //       ),
-              //       SizedBox(height: 40),
-              //       //################################################################################################
-              //       // MultiSelectDialogField with initial values
-              //       //################################################################################################
-              //       MultiSelectDialogField(
-              //         onConfirm: (val) {
-              //           _selectedAnimals5 = val;
-              //         },
-              //         items: _items,
-              //         initialValue:
-              //         _selectedAnimals5, // setting the value of this in initState() to pre-select values.
-              //       ),
+
             ],
           ),
         ),

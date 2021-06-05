@@ -19,7 +19,7 @@ class HorizontalPlaceItem extends StatelessWidget {
             children: <Widget>[
               ClipRRect(
                 borderRadius: BorderRadius.circular(10),
-                child: Image.asset(
+                child: Image.network(
                   "${place["img"]}",
                   height: 178.0,
                   width: 140.0,

@@ -52,6 +52,7 @@ class Home extends StatelessWidget {
       padding: EdgeInsets.only(top: 10.0, left: 20.0),
       height: 250.0,
       width: MediaQuery.of(context).size.width,
+
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         primary: false,
@@ -67,6 +68,7 @@ class Home extends StatelessWidget {
   buildVerticalList() {
     return Padding(
       padding: EdgeInsets.all(20.0),
+
       child: ListView.builder(
         primary: false,
         physics: NeverScrollableScrollPhysics(),

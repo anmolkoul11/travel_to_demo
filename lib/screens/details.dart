@@ -80,18 +80,6 @@ class Details extends StatelessWidget {
                 ],
               ),
               SizedBox(height: 20),
-              Container(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  "${places[0]["price"]}",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 17,
-                  ),
-                  maxLines: 1,
-                  textAlign: TextAlign.left,
-                ),
-              ),
               SizedBox(height: 40),
               Container(
                 alignment: Alignment.centerLeft,
@@ -146,7 +134,7 @@ class Details extends StatelessWidget {
             padding: EdgeInsets.only(right: 10.0),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(10.0),
-              child: Image.asset(
+              child: Image.network(
                 "${place["img"]}",
                 height: 250.0,
                 width: MediaQuery.of(context).size.width - 40.0,

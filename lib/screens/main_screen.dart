@@ -8,6 +8,7 @@ import 'package:travel_to_demo/screens/favorites.dart';
 import 'package:travel_to_demo/screens/community.dart';
 import 'package:travel_to_demo/screens/user_info_screen.dart';
 
+
 class MainScreen extends StatefulWidget {
   const MainScreen({Key key,User user})
       : _user = user,
@@ -31,6 +32,9 @@ class _MainScreenState extends State<MainScreen> {
    transition(context) {
     Future.delayed(Duration.zero,() {Navigator.push(context, MaterialPageRoute(builder: (context) => SelectCategories(user: _user,)));});
     _firstlogin=false;
+    setState(() {
+
+    });
 
   }
 
@@ -63,9 +67,12 @@ class _MainScreenState extends State<MainScreen> {
         ),
         color: Theme.of(context).primaryColor,
       ),
+
     );
 
   }
+
+
 
   void navigationTapped(int page) {
     _pageController.jumpToPage(page);
