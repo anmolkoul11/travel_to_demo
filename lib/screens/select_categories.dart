@@ -63,7 +63,7 @@ class _SelectCategories extends State<SelectCategories> {
   }
 
   // ignore: non_constant_identifier_names
-  Future<String> fetchData(String string) async{
+  Future<List<dynamic>> fetchData(String string) async{
     final response = await http.get(Uri.parse('https://recommend-dest.herokuapp.com/cat?title='+string));
     if (response.statusCode==200){
       List<dynamic> stringList = jsonDecode(response.body) ;
@@ -72,23 +72,26 @@ class _SelectCategories extends State<SelectCategories> {
       });
 
       print(stringList);
-      return response.body;
+      return stringList;
     }
     else{
+      print(string);
       throw Exception('Failed to Fetch data from Heroku');
     }
   }
 
-  buttonAction(String string){
-    var result = fetchData(string);
+  buttonAction(String string) async{
+    var result = await fetchData(string);
 
-    // Navigator.pop((context));
+     Navigator.pop((context));
+     Navigator.pop(context);
+    Navigator.push(context, MaterialPageRoute(builder: (context) => MainScreen(user: _user,)));
   }
 
   @override
   Widget build(BuildContext context) {
     int size;
-
+    String _res = "Temples,Mughal";
     return Scaffold(
       appBar: AppBar(
         title: Text("Select Your Categories"),
@@ -141,11 +144,11 @@ class _SelectCategories extends State<SelectCategories> {
                   var concat = "";
 
                   _selectedAnimals.forEach((item){
-                    concat = concat + "" + item.name +",";
+                    concat = concat + "" + item.nameid +",";
 
                   });
-                  var res = concat.substring(0,concat.length-1);
-                  buttonAction(res);
+                   _res = concat.substring(0,concat.length-1);
+
                 },
               ),
               SizedBox(height: 50),
@@ -156,7 +159,8 @@ class _SelectCategories extends State<SelectCategories> {
               ),
               ElevatedButton(
 
-                onPressed:() {buttonAction("Temples,Mughal");
+                onPressed:() {buttonAction(_res);
+
                 },
 
                 child: const Text('Enabled'),

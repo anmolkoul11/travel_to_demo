@@ -3,6 +3,12 @@ import 'package:travel_to_demo/util/places.dart';
 import 'package:travel_to_demo/widgets/icon_badge.dart';
 
 class Details extends StatelessWidget {
+
+  final int ix;
+  Details(this.ix);
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,7 +45,7 @@ class Details extends StatelessWidget {
                   Container(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      "${places[0]["name"]}",
+                      "${places[ix]["name"]}",
                       style: TextStyle(
                         fontWeight: FontWeight.w700,
                         fontSize: 20,
@@ -64,10 +70,10 @@ class Details extends StatelessWidget {
                     color: Colors.blueGrey[300],
                   ),
                   SizedBox(width: 3),
-                  Container(
-                    alignment: Alignment.centerLeft,
+                  Expanded(
+                    // alignment: Alignment.centerLeft,
                     child: Text(
-                      "${places[0]["location"]}",
+                      "${places[ix]["location"]}",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 13,
@@ -81,8 +87,8 @@ class Details extends StatelessWidget {
               ),
               SizedBox(height: 20),
               SizedBox(height: 40),
-              Container(
-                alignment: Alignment.centerLeft,
+              Expanded(
+                // alignment: Alignment.centerLeft,
                 child: Text(
                   "Details",
                   style: TextStyle(
@@ -93,11 +99,11 @@ class Details extends StatelessWidget {
                   textAlign: TextAlign.left,
                 ),
               ),
-              SizedBox(height: 10.0),
+              // SizedBox(height: 10.0),
               Container(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  "${places[0]["details"]}",
+                  "${places[ix]["details"]}",
                   style: TextStyle(
                     fontWeight: FontWeight.normal,
                     fontSize: 15.0,
@@ -126,16 +132,16 @@ class Details extends StatelessWidget {
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         primary: false,
-        itemCount: places == null ? 0 : places.length,
+        itemCount: places == null ? 0 : places[ix].length,
         itemBuilder: (BuildContext context, int index) {
-          Map place = places[index];
+          List place = places[ix]["imgSet"];
 
           return Padding(
             padding: EdgeInsets.only(right: 10.0),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(10.0),
               child: Image.network(
-                "${place["img"]}",
+                "${place[index]}",
                 height: 250.0,
                 width: MediaQuery.of(context).size.width - 40.0,
                 fit: BoxFit.cover,

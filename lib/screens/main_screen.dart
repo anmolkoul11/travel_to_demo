@@ -9,6 +9,7 @@ import 'package:travel_to_demo/screens/community.dart';
 import 'package:travel_to_demo/screens/user_info_screen.dart';
 
 
+
 class MainScreen extends StatefulWidget {
   const MainScreen({Key key,User user})
       : _user = user,
@@ -32,9 +33,6 @@ class _MainScreenState extends State<MainScreen> {
    transition(context) {
     Future.delayed(Duration.zero,() {Navigator.push(context, MaterialPageRoute(builder: (context) => SelectCategories(user: _user,)));});
     _firstlogin=false;
-    setState(() {
-
-    });
 
   }
 
@@ -43,14 +41,16 @@ class _MainScreenState extends State<MainScreen> {
     if(_firstlogin==true){
 
       transition(context);
+      setState(() {
 
+      });
     }
     return Scaffold(
       body: PageView(
         physics: NeverScrollableScrollPhysics(),
         controller: _pageController,
         onPageChanged: onPageChanged,
-        children: List.generate(4, (index) => index > 0?(index>1?(index>2?UserInfoScreen(user: _user,):Community()):Favorites()):Home()),
+        children: List.generate(4, (index) => index > 0?(index>1?(index>2?UserInfoScreen(user: _user,):Community()):Favorites()):Home(user: _user,)),
       ),
       bottomNavigationBar: BottomAppBar(
         child: Row(
@@ -84,11 +84,15 @@ class _MainScreenState extends State<MainScreen> {
 
 
       // _isEmailVerified = _user.emailVerified;
-        final _cTime=_user.metadata.creationTime;
-       final _fTime=_user.metadata.lastSignInTime;
-      if(_cTime == _fTime ){
-        _firstlogin=true;
-      }
+    //     final _cTime=_user.metadata.creationTime;
+    //    final _fTime=_user.metadata.lastSignInTime;
+    //    print("ctime");print(_cTime);
+    // print("_fTime");print(_fTime);
+    //   if(_cTime == _fTime ){
+    //     _firstlogin=true;
+    //
+    //   }
+    // print(_firstlogin);
       super.initState();
 
       _pageController = PageController();

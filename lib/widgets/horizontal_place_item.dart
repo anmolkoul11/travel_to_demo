@@ -4,8 +4,8 @@ import '../screens/details.dart';
 
 class HorizontalPlaceItem extends StatelessWidget {
   final Map place;
-
-  HorizontalPlaceItem({this.place});
+  final int index;
+  HorizontalPlaceItem({this.place, this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -24,11 +24,14 @@ class HorizontalPlaceItem extends StatelessWidget {
                   height: 178.0,
                   width: 140.0,
                   fit: BoxFit.cover,
+                  excludeFromSemantics: true,
                 ),
+
               ),
-              SizedBox(height: 7.0),
+              SizedBox(height: 5.0),
               Container(
                 alignment: Alignment.centerLeft,
+
                 child: Text(
                   "${place["name"]}",
                   style: TextStyle(
@@ -39,7 +42,7 @@ class HorizontalPlaceItem extends StatelessWidget {
                   textAlign: TextAlign.left,
                 ),
               ),
-              SizedBox(height: 3.0),
+              SizedBox(height: 6.0),
               Container(
                 alignment: Alignment.centerLeft,
                 child: Text(
@@ -60,7 +63,7 @@ class HorizontalPlaceItem extends StatelessWidget {
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (BuildContext context) {
-                return Details();
+                return Details(index);
               },
             ),
           );

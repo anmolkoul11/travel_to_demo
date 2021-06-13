@@ -4,8 +4,8 @@ import '../screens/details.dart';
 
 class VerticalPlaceItem extends StatelessWidget {
   final Map place;
-
-  VerticalPlaceItem({this.place});
+  final int index;
+  VerticalPlaceItem({this.place, this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +22,7 @@ class VerticalPlaceItem extends StatelessWidget {
                   height: 70.0,
                   width: 70.0,
                   fit: BoxFit.cover,
+                  excludeFromSemantics: true,
                 ),
                 ),
 
@@ -34,8 +35,8 @@ class VerticalPlaceItem extends StatelessWidget {
                   physics: NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   children: <Widget>[
-                    Container(
-                      alignment: Alignment.centerLeft,
+                    Expanded(
+                      // alignment: Alignment.centerLeft,
                       child: Text(
                         "${place["name"]}",
                         style: TextStyle(
@@ -55,8 +56,8 @@ class VerticalPlaceItem extends StatelessWidget {
                           color: Colors.blueGrey[300],
                         ),
                         SizedBox(width: 3.0),
-                        Container(
-                          alignment: Alignment.centerLeft,
+                        Expanded(
+                          // alignment: Alignment.centerLeft,
                           child: Text(
                             "${place["location"]}",
                             style: TextStyle(
@@ -78,11 +79,12 @@ class VerticalPlaceItem extends StatelessWidget {
             ],
           ),
         ),
+
         onTap: () {
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (BuildContext context) {
-                return Details();
+                return Details(index);
               },
             ),
           );

@@ -4,7 +4,7 @@ import 'package:travel_to_demo/util/places.dart';
 import 'package:travel_to_demo/widgets/horizontal_place_item.dart';
 import 'package:travel_to_demo/widgets/icon_badge.dart';
 import 'package:travel_to_demo/widgets/search_bar.dart';
-import 'package:travel_to_demo/widgets/vertical_place_item.dart';
+import 'package:travel_to_demo/widgets/vertical_blog_item.dart';
 import 'package:travel_to_demo/screens/notifications.dart';
 
 
@@ -39,10 +39,7 @@ class Community extends StatelessWidget {
               ),
             ),
           ),
-          Padding(
-            padding: EdgeInsets.all(20.0),
-            child: SearchBar(),
-          ),
+
           buildHorizontalList(context),
           buildVerticalList(),
         ],
@@ -77,7 +74,7 @@ class Community extends StatelessWidget {
          itemCount: blogs == null ? 0 : blogs.length,
          itemBuilder: (BuildContext context, int index) {
            Map blog = blogs[index];
-          return VerticalPlaceItem(place: blog);
+          return VerticalBlogItem(blog: blog,index: index);
          },
        ),
     );
