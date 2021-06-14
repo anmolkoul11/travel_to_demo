@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
 import 'package:travel_to_demo/screens/main_screen.dart';
 import 'package:travel_to_demo/util//formfield.dart';
+
 import 'package:http/http.dart' as http;
 
 
@@ -152,14 +153,11 @@ class _SelectCategories extends State<SelectCategories> {
                 },
               ),
               SizedBox(height: 50),
-              ElevatedButton(
 
-                onPressed: null,
-                child: const Text('Disabled'),
-              ),
               ElevatedButton(
 
                 onPressed:() {buttonAction(_res);
+                CircularProgressIndicator();
 
                 },
 

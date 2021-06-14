@@ -38,7 +38,7 @@ class _HomeState extends State<Home> {
       floatingActionButton: FloatingActionButton(
 
         child: Icon(Icons.place),
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.white70,
         onPressed: (){
           Navigator.push(
             context,

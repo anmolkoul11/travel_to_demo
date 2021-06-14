@@ -58,7 +58,9 @@ class Details extends StatelessWidget {
                     icon: Icon(
                       Icons.bookmark,
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      savedplaces.add(places[ix]);
+                    },
                   ),
                 ],
               ),
@@ -116,12 +118,7 @@ class Details extends StatelessWidget {
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(
-          Icons.airplanemode_active,
-        ),
-        onPressed: () {},
-      ),
+
     );
   }
 
@@ -132,7 +129,8 @@ class Details extends StatelessWidget {
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         primary: false,
-        itemCount: places == null ? 0 : places[ix].length,
+        itemCount: places == null ||places[ix]==null ||places[ix]["imgSet"]==null? 0 : (places[ix]["imgSet"].length<places[ix].length?places[ix]["imgSet"].length:places[ix].length),
+
         itemBuilder: (BuildContext context, int index) {
           List place = places[ix]["imgSet"];
 

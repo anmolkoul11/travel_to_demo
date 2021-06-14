@@ -3,7 +3,7 @@ import 'package:travel_to_demo/util/places.dart';
 import 'package:travel_to_demo/widgets/horizontal_place_item.dart';
 import 'package:travel_to_demo/widgets/icon_badge.dart';
 import 'package:travel_to_demo/widgets/search_bar.dart';
-import 'package:travel_to_demo/widgets/vertical_place_item.dart';
+import 'package:travel_to_demo/widgets/vertical_saved_place_item.dart';
 import 'package:travel_to_demo/screens/notifications.dart';
 
 
@@ -14,9 +14,9 @@ class Favorites extends StatelessWidget {
       appBar: AppBar(
         actions: <Widget>[
           IconButton(
-            icon: IconBadge(
-              icon: Icons.notifications_none,
-            ),
+              icon: IconBadge(
+                icon: Icons.notifications_none,
+              ),
               onPressed: () {
                 Navigator.push(
                   context,
@@ -30,17 +30,14 @@ class Favorites extends StatelessWidget {
           Padding(
             padding: EdgeInsets.all(20.0),
             child: Text(
-              "Favorites",
+              "Saved Places",
               style: TextStyle(
                 fontSize: 30.0,
                 fontWeight: FontWeight.w600,
               ),
             ),
           ),
-          // Padding(
-          //   padding: EdgeInsets.all(20.0),
-          //   child: SearchBar(),
-          // ),
+
           buildHorizontalList(context),
           buildVerticalList(),
         ],
@@ -66,18 +63,18 @@ class Favorites extends StatelessWidget {
   }
 
   buildVerticalList() {
-    return Padding(
+    return Container(
       padding: EdgeInsets.all(20.0),
-      // child: ListView.builder(
-      //   primary: false,
-      //   physics: NeverScrollableScrollPhysics(),
-      //   shrinkWrap: true,
-      //   itemCount: places == null ? 0 : places.length,
-      //   itemBuilder: (BuildContext context, int index) {
-      //     Map place = places[index];
-      //     return VerticalPlaceItem(place: place);
-      //   },
-      // ),
+      child: ListView.builder(
+        primary: false,
+        physics: NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
+        itemCount: savedplaces == null ? 0 : savedplaces.length,
+        itemBuilder: (BuildContext context, int index) {
+          Map splace = savedplaces[index];
+          return VerticalSavedPlaceItem(splace: splace,index: index);
+        },
+      ),
     );
   }
 }

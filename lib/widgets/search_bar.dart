@@ -1,7 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'dart:convert';
+
+import 'package:flutter/services.dart';
 import 'package:travel_to_demo/screens/autocomplete.dart';
+import 'package:travel_to_demo/util/search_data.dart';
 
 class SearchBar extends StatefulWidget {
   const SearchBar({Key key,User user})
@@ -46,9 +50,12 @@ class _SearchBarState extends State<SearchBar> {
         onTap: () async {
           // generate a new token here
           final sessionToken = "Uuid().v4()";
-          final result = await showSearch(context: context,delegate: SearchPlace()
-            
-          );
+          await DataViewModel.loadData();
+          List<SearchData> temp = DataViewModel.sdata;
+          String jsonString = await rootBundle.loadString('assets/database.json');
+
+
+          final result = await showSearch(context: context,delegate: SearchPlace(jsonString));
           // This will change the text displayed in the TextField
 
         },

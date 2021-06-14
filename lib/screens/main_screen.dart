@@ -59,7 +59,7 @@ class _MainScreenState extends State<MainScreen> {
           children: <Widget>[
             SizedBox(width: 7.0),
             barIcon(icon: Icons.home, page: 0),
-            barIcon(icon: Icons.favorite, page: 1),
+            barIcon(icon: Icons.bookmark, page: 1),
             barIcon(icon: Icons.mode_comment, page: 2, badge: true),
             barIcon(icon: Icons.person, page: 3),
             SizedBox(width: 7.0),

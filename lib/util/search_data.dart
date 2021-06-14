@@ -7,7 +7,7 @@ class SearchData {
   String location;
   String details;
   String img;
-  String imgSet;
+  List<String> imgSet;
 
   SearchData({
     this.name,
@@ -23,7 +23,7 @@ class SearchData {
         location: parsedJson["location"] as String,
         details: parsedJson["details"] as String,
         img: parsedJson["img"] as String,
-      imgSet: parsedJson["imgSet"] as String,
+      imgSet: parsedJson["imgSet"] as List<String>,
     );
   }
 }
@@ -34,10 +34,10 @@ class DataViewModel {
 
   static Future loadData() async {
     try {
-       sdata = new List<SearchData>();
-      String jsonString = await rootBundle.loadString('assets/players.json');
+       sdata = [];
+      String jsonString = await rootBundle.loadString('assets/database.json');
       Map parsedJson = json.decode(jsonString);
-      var categoryJson = parsedJson['sdata'] as List;
+      var categoryJson = parsedJson['name'] as List;
       for (int i = 0; i < categoryJson.length; i++) {
         sdata.add(new SearchData.fromJson(categoryJson[i]));
       }
@@ -45,4 +45,6 @@ class DataViewModel {
       print(e);
     }
   }
+
+
 }

@@ -36,7 +36,7 @@ class DetailsBlog extends StatelessWidget {
             physics: NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             children: <Widget>[
-              Row(
+              Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Container(
@@ -51,12 +51,12 @@ class DetailsBlog extends StatelessWidget {
                       textAlign: TextAlign.left,
                     ),
                   ),
-                  IconButton(
-                    icon: Icon(
-                      Icons.bookmark,
-                    ),
-                    onPressed: () {},
-                  ),
+                  // IconButton(
+                  //   icon: Icon(
+                  //     Icons.bookmark,
+                  //   ),
+                  //   onPressed: () {},
+                  // ),
                 ],
               ),
               Row(
@@ -113,12 +113,7 @@ class DetailsBlog extends StatelessWidget {
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(
-          Icons.airplanemode_active,
-        ),
-        onPressed: () {},
-      ),
+
     );
   }
 
@@ -129,16 +124,16 @@ class DetailsBlog extends StatelessWidget {
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         primary: false,
-        itemCount: blogs == null ? 0 : blogs[ix].length,
+        itemCount: blogs == null || blogs[ix] == null  ? 0 : blogs[ix]["imgSet"].length,
         itemBuilder: (BuildContext context, int index) {
-          Map blog = blogs[ix];
+          List blog = blogs[ix]["imgSet"];
 
           return Padding(
             padding: EdgeInsets.only(right: 10.0),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(10.0),
               child: Image.asset(
-                "${blog["img"]}",
+                "${blog[index]}",
                 height: 250.0,
                 width: MediaQuery.of(context).size.width - 40.0,
                 fit: BoxFit.cover,
